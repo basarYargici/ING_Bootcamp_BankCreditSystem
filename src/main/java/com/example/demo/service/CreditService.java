@@ -2,10 +2,15 @@ package com.example.demo.service;
 
 import com.example.demo.model.Credit;
 import com.example.demo.repository.CreditRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by İbrahim Başar YARGICI at 28.09.2021
  */
+@Service
 public class CreditService {
     private final CreditRepository creditRepository;
 
@@ -13,13 +18,17 @@ public class CreditService {
         this.creditRepository = creditRepository;
     }
 
-    public Credit findCredit(long id) {
-        Credit credit = creditRepository.getById(id);
+    public Set<Credit> getAll() {
+        return new HashSet<>(creditRepository.findAll());
+    }
 
-        return credit;
+    public Credit findCreditById(long id) {
+        // TODO business code
+        return creditRepository.getById(id);
     }
 
     public Credit save(Credit credit) {
+        // TODO business code
         return creditRepository.save(credit);
     }
 
@@ -30,6 +39,6 @@ public class CreditService {
 
     public void delete(long id) {
         // TODO business code 
-        creditRepository.delete(findCredit(id));
+        creditRepository.delete(findCreditById(id));
     }
 }
