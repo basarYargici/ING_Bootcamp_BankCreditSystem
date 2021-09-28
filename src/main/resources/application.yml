@@ -1,0 +1,33 @@
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+spring:
+  security:
+    user:
+      name: admin
+      password: password
+
+  datasource:
+    url: jdbc:postgresql://raja.db.elephantsql.com:5432/nukfzfxy
+    username: nukfzfxy
+    password: 5ExgU1h8KgEwiHOWzRfW_IH_Jur61iIH
+    driverClassName: org.postgresql.Driver
+
+  devtools:
+    restart:
+      enabled: true
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        use_sql_comments: true
+
+
