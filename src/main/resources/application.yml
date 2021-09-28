@@ -12,7 +12,7 @@ spring:
   datasource:
     url: jdbc:postgresql://raja.db.elephantsql.com:5432/nukfzfxy
     username: nukfzfxy
-    password: 5ExgU1h8KgEwiHOWzRfW_IH_Jur61iIH
+    password: 0jdRA9Brzt-B8xggY4PJ4nitezynlpKW
     driverClassName: org.postgresql.Driver
 
   devtools:
