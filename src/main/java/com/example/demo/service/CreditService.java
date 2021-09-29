@@ -22,6 +22,8 @@ public class CreditService {
         return new HashSet<>(creditRepository.findAll());
     }
 
+    //
+
     public Credit findCreditById(long id) {
         // TODO business code
         return creditRepository.getById(id);
