@@ -1,8 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Credit;
 import com.example.demo.model.User;
+import com.example.demo.model.Users;
+
 import com.example.demo.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -11,35 +15,19 @@ import java.util.Set;
 /**
  * Created by İbrahim Başar YARGICI at 28.09.2021
  */
-@Service
-public class UserService {
-    private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+public interface UserService {
 
-    public Set<User> getAll() {
-        return new HashSet<>(userRepository.findAll());
-    }
 
-    public User findUserById(long id) {
-        // TODO business code
-        return userRepository.getById(id);
-    }
+     Set<User> getAll();
 
-    public User save(User user) {
-        // TODO business code
-        return userRepository.save(user);
-    }
+     User findUserById(int id);
 
-    public User update(User user) {
-        // TODO business code
-        return userRepository.save(user);
-    }
+    User save(User user);
 
-    public void delete(long id) {
-        // TODO business code
-        userRepository.delete(findUserById(id));
-    }
+     User update(User user);
+
+     void delete(int id);
+
+
 }

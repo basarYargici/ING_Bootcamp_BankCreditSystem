@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.security.access.prepost.PreAuthorize;
 import java.util.Set;
 
 /**
@@ -25,9 +25,9 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User findUserById(@PathVariable long id) {
+    public User findUserById(@PathVariable int id) {
         // TODO business code
-        return userService.findUserById(id);
+       return this.userService.findUserById(id);
     }
 
     @PostMapping("/add")
@@ -42,8 +42,9 @@ public class UserController {
         return userService.save(user);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete")
-    public void delete(long id) {
+    public void delete(int id) {
         // TODO business code
         userService.delete(id);
     }
