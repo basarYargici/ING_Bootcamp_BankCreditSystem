@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * Created by Emirhan Doğandemir at 29.09.2021
+ */
+
 @Component
 public class UnauthorizedEntryPoint implements AuthenticationEntryPoint, Serializable {
 
