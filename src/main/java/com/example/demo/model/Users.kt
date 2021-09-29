@@ -7,7 +7,7 @@ import javax.persistence.*
  * Created by İbrahim Başar YARGICI at 28.09.2021
  */
 @Entity(name = "userDetail")
-data class User(
+data class Users(
     @Id
     val id: Long,
     var name: String,
