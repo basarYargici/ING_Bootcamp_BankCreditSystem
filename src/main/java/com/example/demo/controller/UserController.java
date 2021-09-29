@@ -15,10 +15,6 @@ import java.util.Set;
 public class UserController {
     private final UserService userService;
 
-    User user = new User();
-
-
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
