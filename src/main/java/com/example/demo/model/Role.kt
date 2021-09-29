@@ -1,40 +1,21 @@
-package com.example.demo.model;
-import javax.persistence.Column;
-import javax.persistence.Entity;
+package com.example.demo.model
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*
 
-import javax.persistence.Table;
-
-
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+/**
+ * Created by Emirhan Doğandemir at 29.09.2021
+ */
 @Entity
-@Table(name="roles")
-public class Role {
-
+@Table(name = "roles")
+class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    val id = 0
 
-    @Column(name = "name",unique = true,nullable = false)
-    private String name;
+    @Column(unique = true, nullable = false)
+    val name: String? = null
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id='" + getId() + '\'' +
-                "name='" + name + '\'' +
-                '}';
+    override fun toString(): String {
+        return "Role{id='$id'name='$name'}"
     }
-
-
-
 }

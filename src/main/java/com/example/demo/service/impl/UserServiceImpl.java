@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Created by Emirhan Doğandemir at 29.09.2021
+ */
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
@@ -26,7 +29,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User findUserById(int id) {
-    return this.userRepository.getById(id);
+        return this.userRepository.getById(id);
     }
 
     @Override

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Created by Emirhan Doğandemir at 29.09.2021
+ */
 @Service
 public class CreditServiceImpl implements CreditService {
     private final CreditRepository creditRepository;

@@ -1,12 +1,8 @@
 package com.example.demo.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+/**
+ * Created by Emirhan Doğandemir at 29.09.2021
+ */
 public class UserLoginDto {
     private String username;
     private String password;

@@ -2,8 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Set;
 
 /**
@@ -27,7 +28,7 @@ public class UserController {
     @GetMapping("/{id}")
     public User findUserById(@PathVariable int id) {
         // TODO business code
-       return this.userService.findUserById(id);
+        return this.userService.findUserById(id);
     }
 
     @PostMapping("/add")

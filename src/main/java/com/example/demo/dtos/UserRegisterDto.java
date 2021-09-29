@@ -1,21 +1,16 @@
 package com.example.demo.dtos;
 
-
-
 import com.example.demo.model.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+/**
+ * Created by Emirhan Doğandemir at 29.09.2021
+ */
 public class UserRegisterDto {
     private String username;
     private String email;
     private String password;
 
-    public User getUserFromDto(){
+    public User getUserFromDto() {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
