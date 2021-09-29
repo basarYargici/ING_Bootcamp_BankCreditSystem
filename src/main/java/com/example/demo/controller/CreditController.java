@@ -43,7 +43,7 @@ public class CreditController {
     }
 
     @DeleteMapping("/delete")
-    public void delete(long id) {
+    public void delete(int id) {
         // TODO business code
         creditService.delete(id);
     }

@@ -10,37 +10,20 @@ import java.util.Set;
 /**
  * Created by İbrahim Başar YARGICI at 28.09.2021
  */
-@Service
-public class CreditService {
-    private final CreditRepository creditRepository;
 
-    public CreditService(CreditRepository creditRepository) {
-        this.creditRepository = creditRepository;
-    }
+public interface CreditService {
 
-    public Set<Credit> getAll() {
-        return new HashSet<>(creditRepository.findAll());
-    }
 
-    //
+     Set<Credit> getAll();
 
-    public Credit findCreditById(long id) {
-        // TODO business code
-        return creditRepository.getById(id);
-    }
 
-    public Credit save(Credit credit) {
-        // TODO business code
-        return creditRepository.save(credit);
-    }
+     Credit findCreditById(long id);
 
-    public Credit update(Credit credit) {
-        // TODO business code 
-        return creditRepository.save(credit);
-    }
+     Credit save(Credit credit);
 
-    public void delete(long id) {
-        // TODO business code 
-        creditRepository.delete(findCreditById(id));
-    }
+
+    Credit update(Credit credit);
+
+     void delete(int id);
+
 }
