@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dtos.UserRegisterDto;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,13 +33,13 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public User save(User user) {
+    public User save(UserRegisterDto user) {
         // TODO business code
         return userService.save(user);
     }
 
     @PostMapping("/update")
-    public User update(User user) {
+    public User update(UserRegisterDto user) {
         // TODO business code
         return userService.save(user);
     }
