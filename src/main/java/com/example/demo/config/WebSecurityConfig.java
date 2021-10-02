@@ -27,7 +27,7 @@ import javax.annotation.Resource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
+    @Resource(name="userService")
     private UserDetailsService userDetailsService;
 
     @Autowired
@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/api/auth/login")
+                .antMatchers("/api/auth/login,/api/auth/register")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

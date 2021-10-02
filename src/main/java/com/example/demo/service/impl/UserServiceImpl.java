@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * Created by Emirhan Doğandemir at 29.09.2021
  */
-@Service
+@Service(value="userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
 
