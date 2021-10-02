@@ -16,13 +16,14 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Created by Emirhan Doğandemir at 30.09.2021
+ */
+
 @RestController
 @RequestMapping("/api/auth/")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthController {
-
-    @Value("${email.content}")
-    public String EMAIL_CONTENT;
 
 
     @Autowired

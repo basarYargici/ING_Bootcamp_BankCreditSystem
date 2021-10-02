@@ -6,6 +6,7 @@ import com.example.demo.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Set;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     private final UserService userService;
 
     public UserController(UserService userService) {
