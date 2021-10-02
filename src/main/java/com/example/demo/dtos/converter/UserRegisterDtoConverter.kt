@@ -6,7 +6,7 @@ import com.example.demo.model.User
 import org.springframework.stereotype.Component
 
 /**
- * Created by İbrahim Başar YARGICI at 2.10.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 2.10.2021
  */
 @Component
 class UserRegisterDtoConverter {

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by İbrahim Başar YARGICI at 28.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 28.09.2021
  */
 // this is a test class to see if API is working
 @RestController

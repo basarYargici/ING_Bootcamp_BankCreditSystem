@@ -6,6 +6,9 @@ import com.example.demo.repository.RoleRepository;
 import com.example.demo.service.RoleService;
 import org.springframework.stereotype.Service;
 
+/**
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 29.09.2021
+ */
 @Service
 public class RoleServiceImpl implements RoleService {
 

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 /**
- * Created by İbrahim Başar YARGICI at 28.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 28.09.2021
  */
 @Entity(name = "userDetail")
 data class User(

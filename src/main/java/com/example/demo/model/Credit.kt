@@ -7,7 +7,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 /**
- * Created by İbrahim Başar YARGICI at 28.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 28.09.2021
  */
 @Entity
 data class Credit(

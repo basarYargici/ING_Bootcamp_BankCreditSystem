@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-/**
- * Created by Emirhan Doğandemir at 30.09.2021
- */
 
+/**
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 30.09.2021
+ */
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*", maxAge = 3600)

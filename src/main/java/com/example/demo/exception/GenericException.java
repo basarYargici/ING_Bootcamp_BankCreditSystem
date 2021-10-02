@@ -3,7 +3,7 @@ package com.example.demo.exception;
 import org.springframework.http.HttpStatus;
 
 /**
- * Created by İbrahim Başar YARGICI at 2.10.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 2.10.2021
  */
 public abstract class GenericException extends RuntimeException {
     public GenericException(String message) {

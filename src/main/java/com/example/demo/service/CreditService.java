@@ -5,7 +5,7 @@ import com.example.demo.model.Credit;
 import java.util.Set;
 
 /**
- * Created by Emirhan Doğandemir at 29.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 29.09.2021
  */
 public interface CreditService {
     Set<Credit> getAll();

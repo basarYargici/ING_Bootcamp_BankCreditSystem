@@ -17,9 +17,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import javax.annotation.Resource;
 
 /**
- * Created by Emirhan Doğandemir at 29.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 29.09.2021
  */
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

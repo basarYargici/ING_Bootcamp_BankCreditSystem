@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 /**
- * Created by İbrahim Başar YARGICI at 2.10.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 2.10.2021
  */
 data class UserDto(
     val id: Long? = 0,

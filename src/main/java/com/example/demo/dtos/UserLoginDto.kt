@@ -4,14 +4,14 @@ import com.example.demo.model.Credit
 import com.example.demo.model.CreditNote
 import com.example.demo.model.Role
 import java.math.BigDecimal
-import java.util.HashSet
+import java.util.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 /**
- * Created by İbrahim Başar YARGICI at 2.10.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 2.10.2021
  */
 data class UserLoginDto(
     val id: Long? = 0,

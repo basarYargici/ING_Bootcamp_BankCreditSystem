@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 /**
- * Created by İbrahim Başar YARGICI at 29.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 29.09.2021
  */
 @RestController
 @RequestMapping("/credit")

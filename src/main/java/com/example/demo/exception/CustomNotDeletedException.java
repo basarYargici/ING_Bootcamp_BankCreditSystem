@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Created by İbrahim Başar YARGICI at 2.10.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 2.10.2021
  */
 @ResponseStatus(HttpStatus.NO_CONTENT)
 public class CustomNotDeletedException extends GenericException {

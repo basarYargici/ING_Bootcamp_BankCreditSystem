@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus
 import java.sql.Timestamp
 
 /**
- * Created by İbrahim Başar YARGICI at 2.10.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 2.10.2021
  */
 data class ExceptionDto(
     val message: String,

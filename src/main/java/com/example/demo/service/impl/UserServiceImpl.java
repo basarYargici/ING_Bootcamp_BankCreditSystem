@@ -6,8 +6,6 @@ import com.example.demo.dtos.UserRegisterDto;
 import com.example.demo.dtos.converter.UserRegisterDtoConverter;
 import com.example.demo.exception.CustomNotFoundException;
 import com.example.demo.exception.CustomNotSavedException;
-import com.example.demo.model.Credit;
-import com.example.demo.model.CreditNote;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
@@ -23,7 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Emirhan Doğandemir at 29.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 29.09.2021
  */
 @Service(value = "userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -109,49 +107,49 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
     }
 
-//    public User getCredit(long userId, long creditId) {
-//        // TODO business code
-//        // find user
-//        User user = findUserById(userId);
-//        // check the creditNote of user
-//        CreditNote userNote = user.getCreditNote();
-//        // find credit
-//        Credit credit = creditService.findCreditById(creditId);
-//        // check that can user afford credit
-//        boolean canGet = canAfford(userNote, credit.getCreditAmount());
-//        // if affords: give credit
-//        if (canGet){
-//
-//        } // else return that user can not get credit
-//        else {
-//
-//        }
-//
-////        return userService.save(user);
-//
-//    }
-//
-//    private Boolean canAfford(CreditNote userNote, float creditAmount) {
-//        boolean canAfford = false;
-//        switch (userNote) {
-//            case A:
-//                break;
-//            case AP:
-//                break;
-//            case APP:
-//                break;
-//            case B:
-//                break;
-//            case C:
-//                break;
-//            case F:
-//                break;
-//            case FM:
-//                break;
-//            default:
-//                break;
-//        }
-//    }
+    //    public User getCredit(long userId, long creditId) {
+    //        // TODO business code
+    //        // find user
+    //        User user = findUserById(userId);
+    //        // check the creditNote of user
+    //        CreditNote userNote = user.getCreditNote();
+    //        // find credit
+    //        Credit credit = creditService.findCreditById(creditId);
+    //        // check that can user afford credit
+    //        boolean canGet = canAfford(userNote, credit.getCreditAmount());
+    //        // if affords: give credit
+    //        if (canGet){
+    //
+    //        } // else return that user can not get credit
+    //        else {
+    //
+    //        }
+    //
+    ////        return userService.save(user);
+    //
+    //    }
+    //
+    //    private Boolean canAfford(CreditNote userNote, float creditAmount) {
+    //        boolean canAfford = false;
+    //        switch (userNote) {
+    //            case A:
+    //                break;
+    //            case AP:
+    //                break;
+    //            case APP:
+    //                break;
+    //            case B:
+    //                break;
+    //            case C:
+    //                break;
+    //            case F:
+    //                break;
+    //            case FM:
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
 
 
     public UserDetails loadUserByUsername(String username) {

@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Created by İbrahim Başar YARGICI at 29.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 29.09.2021
  */
 @RestController
 @RequestMapping("/user")
@@ -52,9 +52,9 @@ public class UserController {
         userService.delete(id);
     }
 
-//    @PostMapping("/getCredit/{userId}/{creditId}")
-//    public UserDto getCredit(@PathVariable long userId, @PathVariable long creditId) {
-//
-//        return userRegisterDtoConverter.convertToUserDto(userService.save(user));
-//    }
+    //    @PostMapping("/getCredit/{userId}/{creditId}")
+    //    public UserDto getCredit(@PathVariable long userId, @PathVariable long creditId) {
+    //
+    //        return userRegisterDtoConverter.convertToUserDto(userService.save(user));
+    //    }
 }

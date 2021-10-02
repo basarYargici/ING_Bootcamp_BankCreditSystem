@@ -17,9 +17,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Created by Emirhan Doğandemir at 29.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 29.09.2021
  */
-
 @Component
 public class TokenProvider implements Serializable {
 

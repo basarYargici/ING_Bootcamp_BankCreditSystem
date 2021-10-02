@@ -6,7 +6,7 @@ import com.example.demo.model.User;
 import java.util.Set;
 
 /**
- * Created by Emirhan Doğandemir at 29.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 29.09.2021
  */
 public interface UserService {
     Set<User> getAll();
