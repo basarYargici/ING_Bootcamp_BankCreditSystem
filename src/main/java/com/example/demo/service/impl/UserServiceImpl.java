@@ -5,6 +5,7 @@ import com.example.demo.config.PasswordConfig;
 import com.example.demo.dtos.UserRegisterDto;
 import com.example.demo.dtos.converter.UserRegisterDtoConverter;
 import com.example.demo.exception.CustomNotFoundException;
+import com.example.demo.exception.CustomNotSavedException;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
@@ -54,37 +55,54 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User findUserById(int id) {
-        return this.userRepository.getById(id);
+    public User findUserById(long id) {
+        try {
+            return userRepository.getById(id);
+        } catch (Exception exception) {
+            throw new CustomNotFoundException("User could not be found with id: " + id);
+        }
     }
 
     @Override
     public User save(UserRegisterDto user) {
 
-        User newUser = userRegisterDtoConverter.userFromDto(user);
+        try {
+            User newUser = userRegisterDtoConverter.convertToUser(user);
 
-        newUser.setPassword(passwordConfig.passwordEncoder().encode(user.getPassword()));
+            newUser.setPassword(passwordConfig.passwordEncoder().encode(user.getPassword()));
 
-        Role role = roleService.findRoleByName("USER");
-        Set<Role> roleSet = new HashSet<>();
-        roleSet.add(role);
-
-        if (newUser.getEmail().split("@")[1].equals("admin.edu")) {
-            role = roleService.findRoleByName("ADMIN");
+            Role role = roleService.findRoleByName("USER");
+            Set<Role> roleSet = new HashSet<>();
             roleSet.add(role);
+
+            if (newUser.getEmail().split("@")[1].equals("admin.edu")) {
+                role = roleService.findRoleByName("ADMIN");
+                roleSet.add(role);
+            }
+            newUser.setRoles(roleSet);
+            return userRepository.save(newUser);
+
+        } catch (Exception exception) {
+            throw new CustomNotSavedException("User could not be saved with username: " + user.getUsername());
         }
-        newUser.setRoles(roleSet);
-        return userRepository.save(newUser);
     }
 
     @Override
     public User update(User user) {
-        return this.userRepository.save(user);
+        try {
+            return this.userRepository.save(user);
+        } catch (Exception exception) {
+            throw new CustomNotFoundException("User could not be found with id: " + user.getId());
+        }
     }
 
     @Override
-    public void delete(int id) {
-        this.userRepository.deleteById(id);
+    public void delete(long id) {
+        try {
+            userRepository.deleteById(id);
+        } catch (Exception exception) {
+            throw new CustomNotFoundException("User could not be deleted with id: " + id);
+        }
     }
 
     public UserDetails loadUserByUsername(String username) {

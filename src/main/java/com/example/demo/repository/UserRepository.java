@@ -10,6 +10,6 @@ import java.util.Optional;
  * Created by İbrahim Başar YARGICI at 28.09.2021
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
 }

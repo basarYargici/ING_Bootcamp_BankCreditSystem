@@ -1,14 +1,14 @@
 package com.example.demo.controller;
 
+import com.example.demo.dtos.UserDto;
 import com.example.demo.dtos.UserRegisterDto;
 import com.example.demo.dtos.converter.UserRegisterDtoConverter;
-import com.example.demo.model.User;
 import com.example.demo.service.UserService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by İbrahim Başar YARGICI at 29.09.2021
@@ -26,32 +26,32 @@ public class UserController {
     }
 
     @GetMapping("/getAll")
-    public Set<User> findCreditById() {
+    public Set<UserDto> findCreditById() {
         // TODO business code
-        return userService.getAll();
+        return userService.getAll().stream().map(userRegisterDtoConverter::convertToUserDto).collect(Collectors.toSet());
     }
 
     @GetMapping("/{id}")
-    public User findUserById(@PathVariable int id) {
+    public UserDto findUserById(@PathVariable long id) {
         // TODO business code
-        return this.userService.findUserById(id);
+        return userRegisterDtoConverter.convertToUserDto(userService.findUserById(id));
     }
 
     @PostMapping("/add")
-    public User save(@Valid UserRegisterDto user) {
+    public UserDto save(@Valid @RequestBody UserRegisterDto user) {
         // TODO business code
-        return userService.save(user);
+        return userRegisterDtoConverter.convertToUserDto(userService.save(user));
     }
 
     @PostMapping("/update")
-    public User update(UserRegisterDto user) {
+    public UserDto update(@Valid @RequestBody UserRegisterDto user) {
         // TODO business code
-        return userService.save(user);
+        return userRegisterDtoConverter.convertToUserDto(userService.save(user));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/delete")
-    public void delete(int id) {
+    //    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable int id) {
         // TODO business code
         userService.delete(id);
     }

@@ -11,11 +11,11 @@ import java.util.Set;
 public interface UserService {
     Set<User> getAll();
 
-    User findUserById(int id);
+    User findUserById(long id);
 
     User save(UserRegisterDto user);
 
     User update(User user);
 
-    void delete(int id);
+    void delete(long id);
 }

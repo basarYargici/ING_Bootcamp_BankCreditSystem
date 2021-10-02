@@ -1,5 +1,6 @@
 package com.example.demo.dtos.converter
 
+import com.example.demo.dtos.UserDto
 import com.example.demo.dtos.UserRegisterDto
 import com.example.demo.model.User
 import org.springframework.stereotype.Component
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component
  */
 @Component
 class UserRegisterDtoConverter {
-    fun userFromDto(userRegisterDto: UserRegisterDto): User {
+    fun convertToUser(userRegisterDto: UserRegisterDto): User {
         return User(
             userRegisterDto.id,
             userRegisterDto.firstname,
@@ -19,7 +20,23 @@ class UserRegisterDtoConverter {
             userRegisterDto.password,
             userRegisterDto.balance,
             userRegisterDto.creditNote,
-            userRegisterDto.creditId
+            userRegisterDto.creditId,
+            userRegisterDto.roles
+        )
+    }
+
+    fun convertToUserDto(user: User): UserDto {
+        return UserDto(
+            user.id,
+            user.firstname,
+            user.lastname,
+            user.email,
+            user.username,
+            user.password,
+            user.balance,
+            user.creditNote,
+            user.creditId,
+            user.roles
         )
     }
 }

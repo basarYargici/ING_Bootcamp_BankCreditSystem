@@ -38,10 +38,10 @@ data class User(
     )
     var password: String,
 
-    private val balance: BigDecimal? = BigDecimal.valueOf(900),
+    val balance: BigDecimal? = BigDecimal.valueOf(900),
 
     @Enumerated(EnumType.ORDINAL)
-    private val creditNote: CreditNote? = null,
+    val creditNote: CreditNote? = CreditNote.C,
 
     @ManyToOne
     @JoinColumn(name = "credit_id", foreignKey = ForeignKey(name = "FK_credit_id"))
@@ -53,5 +53,5 @@ data class User(
         joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "role_id", referencedColumnName = "id")]
     )
-    var roles: Set<Role> = HashSet()
+    var roles: Set<Role>? = HashSet()
 )
