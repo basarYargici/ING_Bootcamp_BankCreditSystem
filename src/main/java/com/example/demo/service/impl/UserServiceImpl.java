@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User save(UserRegisterDto user) {
         User newUser = userRegisterDtoConverter.convertToUser(user);
-
+        // TODO change default user creditNote
         newUser.setPassword(passwordConfig.passwordEncoder().encode(user.getPassword()));
 
         Role role = roleService.findRoleByName("USER");
