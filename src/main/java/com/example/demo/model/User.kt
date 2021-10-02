@@ -20,7 +20,7 @@ data class User(
 
     val lastname: String? = null,
 
-    var email:String? = null,
+    var email: String? = null,
 
     @Column(unique = true)
     var username: @NotBlank @Size(max = 20) String? = null,
@@ -47,5 +47,4 @@ data class User(
         inverseJoinColumns = [JoinColumn(name = "role_id", referencedColumnName = "id")]
     )
     var roles: Set<Role> = HashSet()
-) {
-}
+)

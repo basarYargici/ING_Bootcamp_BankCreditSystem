@@ -2,7 +2,6 @@ package com.example.demo.config;
 
 import com.example.demo.config.jwt.JwtAuthenticationFilter;
 import com.example.demo.config.jwt.UnauthorizedEntryPoint;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
@@ -27,15 +25,19 @@ import javax.annotation.Resource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Resource(name="userService")
+    private final UnauthorizedEntryPoint unauthorizedEntryPoint;
+    private final PasswordConfig passwordConfig;
+    @Resource(name = "userService")
     private UserDetailsService userDetailsService;
 
-    @Autowired
-    private UnauthorizedEntryPoint unauthorizedEntryPoint;
+    public WebSecurityConfig(UnauthorizedEntryPoint unauthorizedEntryPoint, PasswordConfig passwordConfig) {
+        this.unauthorizedEntryPoint = unauthorizedEntryPoint;
+        this.passwordConfig = passwordConfig;
+    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordConfig.passwordEncoder());
     }
 
     @Override
@@ -45,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/api/auth/login,/api/auth/register")
+                .antMatchers("/api/auth/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -59,11 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
     }
 
-
-    @Bean
-    public BCryptPasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Override
     @Bean

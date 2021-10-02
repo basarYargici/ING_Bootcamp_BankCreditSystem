@@ -1,5 +1,8 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.CustomNotDeletedException;
+import com.example.demo.exception.CustomNotFoundException;
+import com.example.demo.exception.CustomNotSavedException;
 import com.example.demo.model.Credit;
 import com.example.demo.repository.CreditRepository;
 import com.example.demo.service.CreditService;
@@ -26,21 +29,37 @@ public class CreditServiceImpl implements CreditService {
 
     @Override
     public Credit findCreditById(long id) {
-        return null;
+        return creditRepository.findById(id)
+                .orElseThrow(() -> new CustomNotFoundException("Credit could not be found by id: " + id));
     }
 
     @Override
     public Credit save(Credit credit) {
-        return null;
+        try {
+            return creditRepository.save(credit);
+        } catch (Exception e) {
+            throw new CustomNotSavedException("Credit could not be saved with id: " + credit.getId());
+        }
     }
 
     @Override
     public Credit update(Credit credit) {
-        return null;
+        try {
+            Credit savedCredit = findCreditById(credit.getId()); //if not found throws CustomNotFoundException
+            savedCredit.setBankInterest(credit.getBankInterest());
+            savedCredit.setExtraPercentage(credit.getExtraPercentage());
+            return creditRepository.save(credit);
+        } catch (Exception e) {
+            throw new CustomNotSavedException("Credit could not be saved with id: " + credit.getId());
+        }
     }
 
     @Override
     public void delete(int id) {
-
+        try {
+            creditRepository.delete(findCreditById(id));
+        } catch (Exception e) {
+            throw new CustomNotDeletedException("Credit could not be deleted with id: " + id);
+        }
     }
 }

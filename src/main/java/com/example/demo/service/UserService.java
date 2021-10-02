@@ -13,7 +13,7 @@ public interface UserService {
 
     User findUserById(int id);
 
-     User save(UserRegisterDto user);
+    User save(UserRegisterDto user);
 
     User update(User user);
 

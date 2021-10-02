@@ -5,11 +5,10 @@ import com.example.demo.model.User;
 /**
  * Created by Emirhan Doğandemir at 29.09.2021
  */
-
 public class UserRegisterDto {
     private String username;
-    private String email;
     private String password;
+    private String email;
 
     public User getUserFromDto() {
         User user = new User();
