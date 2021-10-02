@@ -20,7 +20,7 @@ class UserRegisterDtoConverter {
             userRegisterDto.password,
             userRegisterDto.balance,
             userRegisterDto.creditNote!!,
-            userRegisterDto.creditId,
+            userRegisterDto.credit,
             userRegisterDto.roles
         )
     }
@@ -35,7 +35,7 @@ class UserRegisterDtoConverter {
             user.password,
             user.balance,
             user.creditNote,
-            user.creditId,
+            user.credit,
             user.roles
         )
     }

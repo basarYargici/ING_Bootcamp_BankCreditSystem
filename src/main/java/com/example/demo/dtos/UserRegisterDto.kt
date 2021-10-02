@@ -38,11 +38,11 @@ data class UserRegisterDto(
     )
     var password: String,
 
-    val balance: BigDecimal? = BigDecimal.valueOf(900),
+    val balance: BigDecimal = BigDecimal.valueOf(900),
 
-    val creditNote: CreditNote?,
+    val creditNote: CreditNote? = CreditNote.C,
 
-    var creditId: Credit?,
+    var credit: Credit?,
 
     var roles: Set<Role>? = HashSet()
 )

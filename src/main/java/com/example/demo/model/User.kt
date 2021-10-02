@@ -38,14 +38,14 @@ data class User(
     )
     var password: String,
 
-    val balance: BigDecimal? = BigDecimal.valueOf(900),
+    var balance: BigDecimal = BigDecimal.valueOf(900),
 
     @Enumerated(EnumType.ORDINAL)
     val creditNote: CreditNote = CreditNote.C,
 
     @ManyToOne
     @JoinColumn(name = "credit_id", foreignKey = ForeignKey(name = "FK_credit_id"))
-    var creditId: Credit? = null,
+    var credit: Credit? = null,
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

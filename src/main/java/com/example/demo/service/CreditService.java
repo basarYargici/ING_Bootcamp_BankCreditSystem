@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Credit;
+import com.example.demo.model.CreditNote;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -17,4 +19,7 @@ public interface CreditService {
     Credit update(Credit credit);
 
     Boolean delete(int id);
+
+    Credit getByCreditNote(CreditNote creditNote);
+
 }

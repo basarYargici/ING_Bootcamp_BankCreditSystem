@@ -46,15 +46,14 @@ public class UserController {
         return userRegisterDtoConverter.convertToUserDto(userService.save(user));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable int id) {
         userService.delete(id);
     }
 
-    //    @PostMapping("/getCredit/{userId}/{creditId}")
-    //    public UserDto getCredit(@PathVariable long userId, @PathVariable long creditId) {
-    //
-    //        return userRegisterDtoConverter.convertToUserDto(userService.save(user));
-    //    }
+    @GetMapping("/getCredit/{userId}/{creditId}")
+    public UserDto getCredit(@PathVariable long userId, @PathVariable long creditId) {
+        return userRegisterDtoConverter.convertToUserDto(userService.getCredit(userId, creditId));
+    }
 }

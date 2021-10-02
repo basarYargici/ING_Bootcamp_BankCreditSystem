@@ -4,6 +4,7 @@ import com.example.demo.exception.CustomNotDeletedException;
 import com.example.demo.exception.CustomNotFoundException;
 import com.example.demo.exception.CustomNotSavedException;
 import com.example.demo.model.Credit;
+import com.example.demo.model.CreditNote;
 import com.example.demo.repository.CreditRepository;
 import com.example.demo.service.CreditService;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class CreditServiceImpl implements CreditService {
     @Override
     public Credit findCreditById(long id) {
         return creditRepository.findById(id)
-                .orElseThrow(() -> new CustomNotFoundException("Credit could not be found by id: " + id));
+                .orElseThrow(() -> new CustomNotFoundException("Credit could not found by id: " + id));
     }
 
     @Override
@@ -85,5 +86,11 @@ public class CreditServiceImpl implements CreditService {
         } catch (Exception e) {
             throw new CustomNotDeletedException("Credit could not be deleted with id: " + id);
         }
+    }
+
+    @Override
+    public Credit getByCreditNote(CreditNote creditNote) {
+        return creditRepository.getByCreditNote(creditNote)
+                .orElseThrow(() -> new CustomNotFoundException("CreditNote not found with name: '" + creditNote.name() + "'"));
     }
 }

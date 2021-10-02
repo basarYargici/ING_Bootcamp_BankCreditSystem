@@ -15,6 +15,7 @@ data class Credit(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Long? = 0,
+    val creditNote: CreditNote,
     val creditAmount: BigDecimal,
     var extraPercentage: Float,
     var bankInterest: Float,

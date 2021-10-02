@@ -15,7 +15,11 @@ public interface UserService {
 
     User save(UserRegisterDto user);
 
+    User save(User user);
+
     User update(User user);
 
     void delete(long id);
+
+    User getCredit(long userId, long creditId);
 }

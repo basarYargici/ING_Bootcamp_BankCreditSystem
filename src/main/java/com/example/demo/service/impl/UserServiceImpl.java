@@ -6,6 +6,8 @@ import com.example.demo.dtos.UserRegisterDto;
 import com.example.demo.dtos.converter.UserRegisterDtoConverter;
 import com.example.demo.exception.CustomNotFoundException;
 import com.example.demo.exception.CustomNotSavedException;
+import com.example.demo.model.Credit;
+import com.example.demo.model.CreditNote;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
@@ -66,33 +68,36 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User save(UserRegisterDto user) {
-
+    public User save(User user) {
         try {
-            User newUser = userRegisterDtoConverter.convertToUser(user);
-
-            newUser.setPassword(passwordConfig.passwordEncoder().encode(user.getPassword()));
-
-            Role role = roleService.findRoleByName("USER");
-            Set<Role> roleSet = new HashSet<>();
-            roleSet.add(role);
-
-            if (newUser.getEmail().split("@")[1].equals("admin.edu")) {
-                role = roleService.findRoleByName("ADMIN");
-                roleSet.add(role);
-            }
-            newUser.setRoles(roleSet);
-            return userRepository.save(newUser);
-
+            return userRepository.save(user);
         } catch (Exception exception) {
             throw new CustomNotSavedException("User could not be saved with username: " + user.getUsername());
         }
     }
 
     @Override
+    public User save(UserRegisterDto user) {
+        User newUser = userRegisterDtoConverter.convertToUser(user);
+
+        newUser.setPassword(passwordConfig.passwordEncoder().encode(user.getPassword()));
+
+        Role role = roleService.findRoleByName("USER");
+        Set<Role> roleSet = new HashSet<>();
+        roleSet.add(role);
+
+        if (newUser.getEmail().split("@")[1].equals("admin.edu")) {
+            role = roleService.findRoleByName("ADMIN");
+            roleSet.add(role);
+        }
+        newUser.setRoles(roleSet);
+        return save(newUser);
+    }
+
+    @Override
     public User update(User user) {
         try {
-            return this.userRepository.save(user);
+            return userRepository.save(user);
         } catch (Exception exception) {
             throw new CustomNotFoundException("User could not be found with id: " + user.getId());
         }
@@ -107,50 +112,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
     }
 
-    //    public User getCredit(long userId, long creditId) {
-    //        // TODO business code
-    //        // find user
-    //        User user = findUserById(userId);
-    //        // check the creditNote of user
-    //        CreditNote userNote = user.getCreditNote();
-    //        // find credit
-    //        Credit credit = creditService.findCreditById(creditId);
-    //        // check that can user afford credit
-    //        boolean canGet = canAfford(userNote, credit.getCreditAmount());
-    //        // if affords: give credit
-    //        if (canGet){
-    //
-    //        } // else return that user can not get credit
-    //        else {
-    //
-    //        }
-    //
-    ////        return userService.save(user);
-    //
-    //    }
-    //
-    //    private Boolean canAfford(CreditNote userNote, float creditAmount) {
-    //        boolean canAfford = false;
-    //        switch (userNote) {
-    //            case A:
-    //                break;
-    //            case AP:
-    //                break;
-    //            case APP:
-    //                break;
-    //            case B:
-    //                break;
-    //            case C:
-    //                break;
-    //            case F:
-    //                break;
-    //            case FM:
-    //                break;
-    //            default:
-    //                break;
-    //        }
-    //    }
+    @Override
+    public User getCredit(long userId, long creditId) {
+        User user = findUserById(userId);
+        Credit credit = creditService.findCreditById(creditId);
+        boolean canGet = canAfford(user.getCreditNote(), credit);
 
+        if (canGet) {
+            user.setBalance(user.getBalance().add(credit.getCreditAmount()));
+            user.setCredit(credit);
+            return save(user);
+        } else {
+            throw new CustomNotSavedException("User with id: " + userId + " can not afford credit with id: " + creditId);
+        }
+    }
+
+    // user can only get credit that has same creditNotes
+    private Boolean canAfford(CreditNote userNote, Credit credit) {
+        return userNote == credit.getCreditNote();
+    }
 
     public UserDetails loadUserByUsername(String username) {
         User user = userRepository.findByUsername(username)
