@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dtos.UserRegisterDto;
 import com.example.demo.model.User;
 
 import java.util.Set;
@@ -12,7 +13,7 @@ public interface UserService {
 
     User findUserById(int id);
 
-     User save(User user);
+     User save(UserRegisterDto user);
 
     User update(User user);
 
