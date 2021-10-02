@@ -1,5 +1,6 @@
 package com.example.demo.model
 
+import java.math.BigDecimal
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -14,6 +15,8 @@ data class Credit(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Long? = 0,
+    val creditAmount: BigDecimal,
     var extraPercentage: Float,
     var bankInterest: Float,
+    var payBack: BigDecimal?,
 )

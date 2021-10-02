@@ -8,11 +8,13 @@ import com.example.demo.repository.CreditRepository;
 import com.example.demo.service.CreditService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Emirhan Doğandemir at 29.09.2021
+ * Created by İbrahim Başar Yargıcı and Emirhan Doğandemir at 29.09.2021
  */
 @Service(value = "creditService")
 public class CreditServiceImpl implements CreditService {
@@ -36,11 +38,32 @@ public class CreditServiceImpl implements CreditService {
     @Override
     public Credit save(Credit credit) {
         try {
+            float bankInterest = credit.getBankInterest();
+            float extraPercentage = credit.getExtraPercentage();
+
+            credit.setPayBack(calculatePayBack(credit, bankInterest, extraPercentage));
+
             return creditRepository.save(credit);
         } catch (Exception e) {
             throw new CustomNotSavedException("Credit could not be saved with id: " + credit.getId());
         }
     }
+
+    private BigDecimal calculatePayBack(Credit credit, float bankInterest, float extraPercentage) {
+        BigDecimal creditAmount = credit.getCreditAmount();
+        BigDecimal a = creditAmount.add(creditAmount.multiply(new BigDecimal(extraPercentage)));
+        BigDecimal b = a.multiply(new BigDecimal(bankInterest));
+
+        return a.add(b).setScale(2, RoundingMode.HALF_EVEN);
+    }
+
+    /**
+     * = credit.getCreditAmount().multiply(BigDecimal(extraPercentage)) + credit.getCreditAmount() * extraPercentage
+     * *bankInterest,
+     *
+     * @param credit
+     * @return
+     */
 
     @Override
     public Credit update(Credit credit) {

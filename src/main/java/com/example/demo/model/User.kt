@@ -41,7 +41,7 @@ data class User(
     val balance: BigDecimal? = BigDecimal.valueOf(900),
 
     @Enumerated(EnumType.ORDINAL)
-    val creditNote: CreditNote? = CreditNote.C,
+    val creditNote: CreditNote = CreditNote.C,
 
     @ManyToOne
     @JoinColumn(name = "credit_id", foreignKey = ForeignKey(name = "FK_credit_id"))
