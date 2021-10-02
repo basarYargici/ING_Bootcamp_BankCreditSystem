@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Credit;
 import com.example.demo.service.CreditService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -31,20 +32,21 @@ public class CreditController {
     }
 
     @PostMapping("/add")
-    public Credit save(Credit credit) {
+    public Credit save(@RequestBody Credit credit) {
         // TODO business code
         return creditService.save(credit);
     }
 
     @PostMapping("/update")
-    public Credit update(Credit credit) {
+    public Credit update(@RequestBody Credit credit) {
         // TODO business code
-        return creditService.save(credit);
+        return creditService.update(credit);
     }
 
-    @DeleteMapping("/delete")
-    public void delete(int id) {
+    //TODO response must be improved!
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable int id) {
         // TODO business code
-        creditService.delete(id);
+        return ResponseEntity.ok(creditService.delete(id));
     }
 }

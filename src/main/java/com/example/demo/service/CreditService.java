@@ -16,5 +16,5 @@ public interface CreditService {
 
     Credit update(Credit credit);
 
-    void delete(int id);
+    Boolean delete(int id);
 }

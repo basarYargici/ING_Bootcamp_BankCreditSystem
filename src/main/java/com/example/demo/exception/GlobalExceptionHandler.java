@@ -44,4 +44,18 @@ public class GlobalExceptionHandler {
                 new ExceptionDto(exception.getMessage(), exception.getHttpStatus(), Timestamp.valueOf(LocalDateTime.now()));
         return handleApiException(apiException);
     }
+
+    @ExceptionHandler(CustomNotSavedException.class)
+    public ResponseEntity<?> handleUsernameException(CustomNotSavedException exception) {
+        ExceptionDto apiException =
+                new ExceptionDto(exception.getMessage(), exception.getHttpStatus(), Timestamp.valueOf(LocalDateTime.now()));
+        return handleApiException(apiException);
+    }
+
+    @ExceptionHandler(CustomNotDeletedException.class)
+    public ResponseEntity<?> handleUsernameException(CustomNotDeletedException exception) {
+        ExceptionDto apiException =
+                new ExceptionDto(exception.getMessage(), exception.getHttpStatus(), Timestamp.valueOf(LocalDateTime.now()));
+        return handleApiException(apiException);
+    }
 }

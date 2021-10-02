@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.config.MyUserDetails;
 import com.example.demo.config.PasswordConfig;
 import com.example.demo.dtos.UserRegisterDto;
+import com.example.demo.dtos.converter.UserRegisterDtoConverter;
 import com.example.demo.exception.CustomNotFoundException;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
@@ -27,11 +28,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final RoleService roleService;
 
     private final PasswordConfig passwordConfig;
+    private final UserRegisterDtoConverter userRegisterDtoConverter;
 
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, PasswordConfig passwordConfig) {
+    public UserServiceImpl(UserRepository userRepository,
+                           RoleService roleService,
+                           PasswordConfig passwordConfig,
+                           UserRegisterDtoConverter userRegisterDtoConverter) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.passwordConfig = passwordConfig;
+        this.userRegisterDtoConverter = userRegisterDtoConverter;
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
@@ -55,7 +61,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User save(UserRegisterDto user) {
 
-        User newUser = user.getUserFromDto();
+        User newUser = userRegisterDtoConverter.userFromDto(user);
 
         newUser.setPassword(passwordConfig.passwordEncoder().encode(user.getPassword()));
 
@@ -68,7 +74,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             roleSet.add(role);
         }
         newUser.setRoles(roleSet);
-        return this.userRepository.save(newUser);
+        return userRepository.save(newUser);
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.dtos.UserRegisterDto;
+import com.example.demo.dtos.converter.UserRegisterDtoConverter;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Set;
 
 /**
@@ -16,9 +18,11 @@ import java.util.Set;
 public class UserController {
 
     private final UserService userService;
+    private final UserRegisterDtoConverter userRegisterDtoConverter;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRegisterDtoConverter userRegisterDtoConverter) {
         this.userService = userService;
+        this.userRegisterDtoConverter = userRegisterDtoConverter;
     }
 
     @GetMapping("/getAll")
@@ -34,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public User save(UserRegisterDto user) {
+    public User save(@Valid UserRegisterDto user) {
         // TODO business code
         return userService.save(user);
     }

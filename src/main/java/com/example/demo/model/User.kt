@@ -13,27 +13,34 @@ import javax.validation.constraints.Size
 @Entity(name = "userDetail")
 data class User(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    val id: Long? = 0,
 
-    val firstname: String? = null,
+    val firstname: String? = "Basar",
 
-    val lastname: String? = null,
+    val lastname: String? = "Emirhan",
 
-    var email: String? = null,
+    // TODO must be unique
+    @NotNull
+    var email: String,
 
-    @Column(unique = true)
-    var username: @NotBlank @Size(max = 20) String? = null,
+    @NotBlank
+    @NotNull
+    @Size(max = 20)
+    var username: String,
 
-    var password: @NotBlank @NotNull @Size(
+    @NotBlank
+    @NotNull
+    @Size(
         min = 6,
         max = 20,
         message = "Password must be between 6 and 20 characters"
-    ) String? = null,
+    )
+    var password: String,
 
-    private val balance: BigDecimal? = null,
+    private val balance: BigDecimal? = BigDecimal.valueOf(900),
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private val creditNote: CreditNote? = null,
 
     @ManyToOne

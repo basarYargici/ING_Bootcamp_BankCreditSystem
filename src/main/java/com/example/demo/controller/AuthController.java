@@ -14,6 +14,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * Created by Emirhan Doğandemir at 30.09.2021
  */
@@ -43,7 +45,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "/register")
-    public User saveUser(@RequestBody UserRegisterDto user) {
+    public User saveUser(@Valid @RequestBody UserRegisterDto user) {
         return userService.save(user);
     }
 }

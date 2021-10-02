@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * Created by Emirhan Doğandemir at 29.09.2021
  */
-@Service
+@Service(value = "creditService")
 public class CreditServiceImpl implements CreditService {
     private final CreditRepository creditRepository;
 
@@ -55,9 +55,10 @@ public class CreditServiceImpl implements CreditService {
     }
 
     @Override
-    public void delete(int id) {
+    public Boolean delete(int id) {
         try {
             creditRepository.delete(findCreditById(id));
+            return true;
         } catch (Exception e) {
             throw new CustomNotDeletedException("Credit could not be deleted with id: " + id);
         }

@@ -1,44 +1,48 @@
-package com.example.demo.dtos;
+package com.example.demo.dtos
 
-import com.example.demo.model.User;
+import com.example.demo.model.Credit
+import com.example.demo.model.CreditNote
+import com.example.demo.model.Role
+import java.math.BigDecimal
+import java.util.*
+import javax.validation.constraints.Email
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 /**
- * Created by Emirhan Doğandemir at 29.09.2021
+ * Created by İbrahim Başar YARGICI at 2.10.2021
  */
-public class UserRegisterDto {
-    private String username;
-    private String password;
-    private String email;
+data class UserRegisterDto(
+    val id: Long? = 0,
 
-    public User getUserFromDto() {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setEmail(email);
-        return user;
-    }
+    val firstname: String = "Basar",
 
-    public String getUsername() {
-        return username;
-    }
+    val lastname: String = "Emirhan",
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    @field:NotNull
+    @field:Email
+    var email: String = "be@gmail.com",
 
-    public String getEmail() {
-        return email;
-    }
+    @field:NotBlank
+    @field:NotNull
+    @field:Size(max = 20)
+    var username: String,
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    @field:NotBlank
+    @field:NotNull
+    @field:Size(
+        min = 6,
+        max = 20,
+        message = "Password must be between 6 and 20 characters"
+    )
+    var password: String,
 
-    public String getPassword() {
-        return password;
-    }
+    val balance: BigDecimal? = BigDecimal.valueOf(900),
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-}
+    val creditNote: CreditNote?,
+
+    var creditId: Credit?,
+
+    var roles: Set<Role>? = HashSet()
+)

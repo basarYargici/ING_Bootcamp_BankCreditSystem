@@ -1,32 +1,48 @@
-package com.example.demo.dtos;
+package com.example.demo.dtos
 
+import com.example.demo.model.Credit
+import com.example.demo.model.CreditNote
+import com.example.demo.model.Role
+import java.math.BigDecimal
+import java.util.HashSet
+import javax.validation.constraints.Email
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 /**
- * Created by Emirhan Doğandemir at 29.09.2021
+ * Created by İbrahim Başar YARGICI at 2.10.2021
  */
+data class UserLoginDto(
+    val id: Long? = 0,
 
-public class UserLoginDto {
-    private String username;
-    private String password;
+    @field:NotBlank
+    @field:NotNull
+    @field:Size(max = 20)
+    var username: String,
 
-    public UserLoginDto(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    @field:NotBlank
+    @field:NotNull
+    @field:Size(
+        min = 6,
+        max = 20,
+        message = "Password must be between 6 and 20 characters"
+    )
+    var password: String,
 
-    public String getUsername() {
-        return username;
-    }
+    val firstname: String = "Basar",
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    val lastname: String = "Emirhan",
 
-    public String getPassword() {
-        return password;
-    }
+    @field:NotNull
+    @field:Email
+    var email: String = "be@gmail.com",
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-}
+    val balance: BigDecimal? = BigDecimal.valueOf(900),
+
+    val creditNote: CreditNote?,
+
+    var creditId: Credit?,
+
+    var roles: Set<Role>? = HashSet()
+)
