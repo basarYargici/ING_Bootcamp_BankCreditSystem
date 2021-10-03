@@ -44,6 +44,8 @@ GET /v1/customer - retrieves all customers
 ---
 
 -- //TODO Write what we have used 
+
+##### EXAMPLE
 ```
 - Java 11
 - Spring Boot
@@ -61,6 +63,8 @@ GET /v1/customer - retrieves all customers
 ### Prerequisites
 ---
 -- //TODO add postgre db
+
+##### EXAMPLE
 ```
 - Maven
 - Docker
@@ -71,6 +75,7 @@ GET /v1/customer - retrieves all customers
 
 -- //TODO explain how to start and use the app
 
+##### EXAMPLE
 ```
 
 There are 2 ways of run & build the application.
@@ -107,6 +112,7 @@ $ npm start
 ### Swagger UI will be run on this url
 
 -- //TODO activate the swagger ui 
+##### EXAMPLE
 ```
 
 `http://localhost:${PORT}/swagger-ui.html`
