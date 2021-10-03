@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.aspects.performance.PerformanceAspect;
 import com.example.demo.exception.CustomNotDeletedException;
 import com.example.demo.exception.CustomNotFoundException;
 import com.example.demo.exception.CustomNotSavedException;
@@ -25,6 +26,7 @@ public class CreditServiceImpl implements CreditService {
         this.creditRepository = creditRepository;
     }
 
+    @PerformanceAspect
     @Override
     public Set<Credit> getAll() {
         return new HashSet<>(creditRepository.findAll());
@@ -88,6 +90,7 @@ public class CreditServiceImpl implements CreditService {
         }
     }
 
+    @PerformanceAspect
     @Override
     public Credit getByCreditNote(CreditNote creditNote) {
         return creditRepository.getByCreditNote(creditNote)
