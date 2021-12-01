@@ -8,7 +8,7 @@ This project illustrates getting credit-loan from a bank. <br>
 Api is deployed on https://basar-ing-bank.herokuapp.com
 If it gives you Application error, that means I turned off the dynos!
 ```
-
+<!-- 
 ### Summary
 -- //TODO Write what we aimed in this project and what and how we are finishing this
  project  
@@ -118,3 +118,4 @@ $ npm start
 `http://localhost:${PORT}/swagger-ui.html`
 
 ```
+-->
